@@ -6,6 +6,7 @@ from configs.database import to_dict
 from flask import request
 from configs.database import db
 
+
 class CandidateApi(Resource):
     """
     :return the information of candidates
