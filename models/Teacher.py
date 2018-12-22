@@ -13,6 +13,8 @@ class Teacher(db.Model):
 
     name = db.Column(db.String(20), nullable=False)
 
+    teacher_id = db.Column(db.String(20), nullable=False)
+
     password = db.Column(db.String(20), nullable=False)
 
     candidates = db.relationship('Candidate', backref='teacher', lazy=True)

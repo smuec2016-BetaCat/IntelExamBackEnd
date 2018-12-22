@@ -4,9 +4,10 @@ from configs.config import (DB_HOST, DB_PASSWORD, DB_PORT, DB_SCHEMA, DB_USER)
 from configs.database import db
 from resources.CandidateApi import CandidateApi
 from resources.addCandidateApi import addCandidateApi
-
+from flask_cors import CORS
 
 app = Flask(__name__)   # create app object
+CORS(app)
 api = Api(app)      # create api object
 app.config["SQLALCHEMY_DATABASE_URI"] = \
     f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_SCHEMA}"

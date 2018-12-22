@@ -1,3 +1,6 @@
+from models.Veido import Vedio
+from models.Image import Image
+from models.Subject import Subject
 from models.permission import Permission
 from models.Teacher import Teacher
 from models.Candidate import Candidate
@@ -18,10 +21,26 @@ class CandidateApi(Resource):
         :return: user information
         """
         try:
+            # search the first_candidate
             first_candidate = Candidate.query.filter(Candidate.examination_status == 0)\
                 .filter(Candidate.teacher_id == 1).first()
-            print(first_candidate)
+            # search the first_candidate_photo
+            first_candidate_photo = Image.query\
+                .filter(Image.id == first_candidate.photo_id).first()
+            # search the first_candidate_vedio
+            first_candidate_vedio = Vedio.query\
+                .filter(Vedio.id == first_candidate.vedio_id).first()
+            # search the first_candidate_subject
+            first_candidate_subject = Subject.query\
+                .filter(Subject.id == first_candidate_vedio.subject_id).first()
+            # turn row into dict
             first_candidate = to_dict(first_candidate)
+            first_candidate_photo = to_dict(first_candidate_photo)
+            first_candidate_vedio = to_dict(first_candidate_vedio)
+            first_candidate_subject = to_dict(first_candidate_subject)
+            first_candidate["photo"] = first_candidate_photo
+            first_candidate["vedio"] = first_candidate_vedio
+            first_candidate["subject"] = first_candidate_subject
         except KeyError:
             return {"error": "error"}, 500
         except AttributeError:
@@ -42,6 +61,6 @@ class CandidateApi(Resource):
             result.examination_status = response["status"]
             db.session.commit()
         except KeyError:
-            return {"error": "failed"}, 500
+            return {"error": "failed"}, 406
         return {"information": "succeed"}, 200
 

@@ -11,11 +11,11 @@ class Candidate(db.Model):
 
     id = db.Column(db.Integer, nullable=False, autoincrement=True, primary_key=True)
 
-    identity_number = db.Column(db.String(20), nullable=False)
+    identity_number = db.Column(db.String(20), nullable=False, unique=True)
 
-    ticket_number = db.Column(db.String(20), nullable=False)
+    ticket_number = db.Column(db.String(20), nullable=False, unique=True)
 
-    name = db.Column(db.String(64), unique=True, index=True, nullable=False)
+    name = db.Column(db.String(64), unique=True, nullable=False)
 
     sex = db.Column(db.String(10), nullable=False)
 
@@ -31,8 +31,10 @@ class Candidate(db.Model):
 
     grades = db.Column(db.Integer)
 
+    vedio_id = db.Column(db.Integer, db.ForeignKey('vedio.id'), nullable=False)
+
     examination_status = db.Column(db.Integer, nullable=False, default=0)
 
-    photo_id = db.Column(db.String(255))
+    photo_id = db.Column(db.ForeignKey('image.id'), nullable=False)
 
     teacher_id = db.Column(db.Integer, db.ForeignKey('teacher.id'), nullable=False)

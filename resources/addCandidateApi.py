@@ -36,7 +36,9 @@ class addCandidateApi(Resource):
                                address=str1 + str2 +"大学",
                                examination_time="2018-12-21 21:30:00",
                                examination_status=0,
-                               teacher_id=1
+                               teacher_id=1,
+                               vedio_id=1,
+                               photo_id=1
                                )
                 db.session.add(me)
                 db.session.commit()
