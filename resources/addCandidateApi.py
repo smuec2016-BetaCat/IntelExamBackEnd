@@ -14,9 +14,17 @@ class addCandidateApi(Resource):
         add infromation of Candidates
         """
         try:
-            id = 310102199807223109
-            ticket = 6551310015040270
-            for i in range(10):
+            id = 310102199807223300
+            ticket = 6551310015040400
+            first_name = ["张", "杨", "李", "丁", "王", "蒋", "吕", "赵", "奚", "陆"]
+            sex = ["男", "女"]
+            school = ["上海海事大学", "上海大学", "上海海洋大学", "上海交通大学",
+                      "上海复旦大学", "上海纽约大学", "上海同济大学",
+                      "上海华东师范大学", "上海华东政法大学", "上海华东理工大学"]
+            for i in range(20):
+                a = int(random.random() * 10)
+                b = int(random.random() * 10)
+                c = round(random.random())
                 id = id+2
                 ticket= ticket+2
                 head1 = random.randint(0xb0, 0xf7)
@@ -29,11 +37,11 @@ class addCandidateApi(Resource):
                 str2 = bytes.fromhex(val2).decode('gb2312')
                 me = Candidate(identity_number=id,
                                ticket_number=ticket,
-                               name="杨" + str1 + str2,
-                               sex='男',
+                               name=first_name[a] + str1 + str2,
+                               sex=sex[c],
                                email='admin@example.com',
                                phone="18717744742",
-                               address=str1 + str2 +"大学",
+                               address=school[b],
                                examination_time="2018-12-21 21:30:00",
                                examination_status=0,
                                teacher_id=1,
