@@ -21,9 +21,10 @@ class CandidateApi(Resource):
         :return: user information
         """
         try:
+            args = request.args
             # search the first_candidate
             first_candidate = Candidate.query.filter(Candidate.examination_status == 0)\
-                .filter(Candidate.teacher_id == 1).first()
+                .filter(Candidate.teacher_id == args["teacher_id"]).first()
             # search the first_candidate_photo
             first_candidate_photo = Image.query\
                 .filter(Image.id == first_candidate.photo_id).first()

@@ -18,9 +18,9 @@ with app.app_context():
     db.init_app(app)    # init db
     db.create_all()     # create tables
 
-api.add_resource(CandidateApi, '/')
+api.add_resource(CandidateApi, '/api/v0/candidate')
 api.add_resource(addCandidateApi, '/add')
-api.add_resource(LoginApi, '/login')
+api.add_resource(LoginApi, '/api/v0/login')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
