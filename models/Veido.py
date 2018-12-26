@@ -11,8 +11,8 @@ class Vedio(db.Model):
 
     id = db.Column(db.Integer, nullable=False, autoincrement=True, primary_key=True)
 
-    name = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
 
-    url = db.Column(db.String(255), unique=True)
+    url = db.Column(db.String(200))
 
     subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)

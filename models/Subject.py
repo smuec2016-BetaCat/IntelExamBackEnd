@@ -11,6 +11,6 @@ class Subject(db.Model):
 
     id = db.Column(db.Integer, nullable=False, autoincrement=True, primary_key=True)
 
-    subject = db.Column(db.String(255), unique=True)
+    subject = db.Column(db.String(50), unique=True)
 
     vedios = db.relationship('Vedio', backref='subject', lazy=True)
